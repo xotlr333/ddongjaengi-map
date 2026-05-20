@@ -1,49 +1,30 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import KakaoMap from './components/map/KakaoMap';
 import LoginPage from './pages/LoginPage';
-import CallbackPage from './pages/CallbackPage';
-import MainPage from './pages/MainPage';
-import { useAuth } from './hooks/useAuth';
+import KakaoCallback from './pages/KakaoCallback';
 
-// 인증이 필요한 라우트를 보호하는 컴포넌트
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
-  return isAuthenticated() ? children : <Navigate to="/login" replace />;
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('accessToken');
+  return token ? children : <Navigate to="/login" />;
 };
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        {/* 로그인 페이지 */}
         <Route path="/login" element={<LoginPage />} />
-        
-        {/* 카카오 콜백 페이지 */}
-        <Route path="/auth/callback" element={<CallbackPage />} />
-        
-        {/* 메인 페이지 (인증 필요) */}
-        <Route
-          path="/"
+        <Route path="/oauth/callback/kakao" element={<KakaoCallback />} />
+        <Route 
+          path="/" 
           element={
-            <ProtectedRoute>
-              <MainPage />
-            </ProtectedRoute>
-          }
+            <PrivateRoute>
+              <KakaoMap />
+            </PrivateRoute>
+          } 
         />
-        
-        {/* 404 - 잘못된 경로는 메인으로 리다이렉트 */}
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
