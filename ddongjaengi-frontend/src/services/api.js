@@ -94,4 +94,27 @@ export const userAPI = {
   deleteMe: () => api.delete(API_ENDPOINTS.USER.ME),
 };
 
+export const restroomAPI = {
+  // 화장실 등록
+  create: (data) => api.post('/restrooms', data),
+  
+  // 영역 내 화장실 검색
+  search: (bounds) => api.get('/restrooms/search', { params: bounds }),
+  
+  // 화장실 수정
+  update: (id, data) => api.put(`/restrooms/${id}`, data),
+  
+  // 화장실 삭제
+  delete: (id) => api.delete(`/restrooms/${id}`),
+  
+  // 즐겨찾기 토글
+  toggleFavorite: (id) => api.post(`/restrooms/${id}/favorite`),
+  
+  // 내 즐겨찾기 목록
+  getFavorites: () => api.get('/restrooms/favorites'),
+
+  // 내가 직접 등록한 화장실 목록
+  getMyRestrooms: () => api.get('/restrooms/my'),
+};
+
 export default api;

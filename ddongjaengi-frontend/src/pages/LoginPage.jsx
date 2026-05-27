@@ -10,8 +10,8 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-amber-50">
-            <div className="p-8 bg-white rounded-2xl shadow-lg flex flex-col items-center space-y-6 w-96">
+        <div className="min-h-screen bg-amber-50 flex flex-col justify-center py-12 px-4">
+            <div className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg flex flex-col items-center space-y-6 w-full max-w-sm mx-auto">
                 <h1 className="text-3xl font-bold text-amber-900 mb-2">💩 똥쟁이 지도</h1>
                 <p className="text-gray-600 text-center mb-4">
                     급할 때 가장 필요한 지도!<br/>지금 로그인하고 안심하고 외출하세요.

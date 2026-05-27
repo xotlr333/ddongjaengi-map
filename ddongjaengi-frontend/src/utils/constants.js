@@ -2,7 +2,7 @@
 // .env 파일에서 실제 값을 설정해야 합니다
 
 // API Base URL
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
 // 카카오 로그인 설정
 export const KAKAO_CONFIG = {

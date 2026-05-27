@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import KakaoMap from './components/map/KakaoMap';
 import LoginPage from './pages/LoginPage';
 import KakaoCallback from './pages/KakaoCallback';
+import MainPage from './pages/MainPage';
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('accessToken');
@@ -19,7 +19,7 @@ function App() {
           path="/" 
           element={
             <PrivateRoute>
-              <KakaoMap />
+              <MainPage />
             </PrivateRoute>
           } 
         />
